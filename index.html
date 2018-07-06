@@ -1,4 +1,5 @@
 <html ng-app="appModule">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,7 +37,7 @@
                     <td>{{aluno.nota1}}</td>
                     <td>{{aluno.nota2}}</td>
                     <td>{{aluno.nota3}}</td>
-                    <td>{{ media(aluno) }}</td>
+                    <td>{{ aluno.media }}</td>
                 </tr>
             </tbody>
         </table>
@@ -54,13 +55,21 @@
                     { nome: "Ana", email: "ana@mail.com", nota1: 65, nota2: 30, nota3: 55 }
                 ];
 
-                $scope.media = function (Aluno) {
-                    var media = (Aluno.nota1 + Aluno.nota2 + Aluno.nota3) / 3;
+                var init = function () {
+                    $scope.alunos.forEach(function(aluno) {
+                        aluno.media = calculaMedia(aluno);
+                    });
+                };
+                var total = 0;
+                var calculaMedia = function (aluno) {
+                    total++;
+                    console.log(total);
+                    var media = (aluno.nota1 + aluno.nota2 + aluno.nota3) / 3;
                     return media.toFixed(2);
                 };
+                init();
 
-
-            })
+            });
 
     </script>
 </body>
